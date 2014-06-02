@@ -7,11 +7,12 @@
  * To change this template use File | Settings | File Templates.
  */
 
-class Listsmodel extends CI_Model {
+class Listsmodel extends CI_Model
+{
 
-    var $title   = '';
+    var $title = '';
     var $content = '';
-    var $date    = '';
+    var $date = '';
 
     function __construct()
     {
@@ -19,7 +20,8 @@ class Listsmodel extends CI_Model {
         parent::__construct();
     }
 
-    function getAllLists() {
+    function getAllLists()
+    {
         $query = $this->db->get('List');
         return $query->result();
     }
@@ -32,18 +34,18 @@ class Listsmodel extends CI_Model {
 
     function insert_entry()
     {
-        $this->title   = $_POST['title']; // please read the below note
+        $this->title = $_POST['title']; // please read the below note
         $this->content = $_POST['content'];
-        $this->date    = time();
+        $this->date = time();
 
         $this->db->insert('entries', $this);
     }
 
     function update_entry()
     {
-        $this->title   = $_POST['title'];
+        $this->title = $_POST['title'];
         $this->content = $_POST['content'];
-        $this->date    = time();
+        $this->date = time();
 
         $this->db->update('entries', $this, array('id' => $_POST['id']));
     }
