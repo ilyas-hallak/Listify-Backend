@@ -41,10 +41,9 @@
         div#listElementMenu {
             margin-right: 36px;
         }
-        span.circle {
+        div.circle {
             width: 20px;
             border-radius: 10px;
-            display: inline-block;
         }
     </style>
 </head>
