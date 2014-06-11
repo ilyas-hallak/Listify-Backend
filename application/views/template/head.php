@@ -59,18 +59,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Listify</a>
+            <a class="navbar-brand" href="<?=base_url("index.php/home/index");?>"">Listify</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="<?=($this->uri->segment(1)==='home')?'active':''?>"><?=anchor("home/index","Home")?></li>
                 <li class="<?=($this->uri->segment(1)==='lists') || ($this->uri->segment(1)==='listelements')?'active':''?>"><?=anchor("lists/index","Meine Listen")?></a></li>
+
                 <li class="disabled"><a href="#">Öffentliche Listen</a></li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><img id="profileImg" src="http://placehold.it/40x40"></li>
             </ul>
-
         </div>
         <!--/.nav-collapse -->
     </div>
