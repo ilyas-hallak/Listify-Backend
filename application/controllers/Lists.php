@@ -18,7 +18,9 @@ class Lists extends MY_BaseController
     {
 
         $this->load->model('Listsmodel');
-        $data2['contentData'] = $this->Listsmodel->getAllLists();
+        $user_id = $this->session->userdata('logged_in')["id"];
+
+        $data2['contentData'] = $this->Listsmodel->getAllListsByUserId($user_id);
 
         $data['title'] = 'Listen Übersicht';
         $data['content'] = $this->load->view('lists/index', $data2, TRUE);
@@ -27,10 +29,13 @@ class Lists extends MY_BaseController
 
     public function create()
     {
-        $data['title'] = 'Listen Übersicht';
-        $data['content'] = $this->load->view('lists/create', null, TRUE);
-        ;
-        $this->load->view('template', $data);
+        $this->load->model('Listsmodel');
+        $user_id = $this->session->userdata('logged_in')["id"];
+        $name = $this->input->post('name');
+
+        $id = $this->Listsmodel->create($name, $user_id);
+
+        redirect("/Listelements/index/".$id);
     }
 
     public function bla()

@@ -38,6 +38,13 @@
             border-radius: 20px;
             margin-top: 8px;
         }
+        div#listElementMenu {
+            margin-right: 36px;
+        }
+        div.circle {
+            width: 20px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 
@@ -57,7 +64,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="<?=($this->uri->segment(1)==='home')?'active':''?>"><?=anchor("home/index","Home")?></li>
-                <li class="<?=($this->uri->segment(1)==='lists')?'active':''?>"><?=anchor("lists/index","Meine Listen")?></a></li>
+                <li class="<?=($this->uri->segment(1)==='lists') || ($this->uri->segment(1)==='listelements')?'active':''?>"><?=anchor("lists/index","Meine Listen")?></a></li>
                 <li class="disabled"><a href="#">Öffentliche Listen</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

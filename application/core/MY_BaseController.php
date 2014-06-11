@@ -15,7 +15,7 @@ class MY_BaseController extends CI_Controller
         $this->output->enable_profiler(TRUE);
         $data = $this->session->userdata('logged_in');
         // sind daten in dem array drin?
-        if(count($data) > 1) {
+        if(count($data) >= 1) {
             if(!count($data['id']) && !count($data['username'])) {
                 $this->goToLoginPage();
             }
@@ -26,5 +26,9 @@ class MY_BaseController extends CI_Controller
 
     function goToLoginPage() {
         redirect('/login/index');
+    }
+
+    function getCurrentUserId() {
+        return $this->session->userdata('logged_in')["id"];
     }
 }

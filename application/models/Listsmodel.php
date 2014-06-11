@@ -26,28 +26,18 @@ class Listsmodel extends CI_Model
         return $query->result();
     }
 
-    function get_last_ten_entries()
+    function getAllListsByUserId($user_id)
     {
-        $query = $this->db->get('entries', 10);
+        $this->db->select('*');
+        $this->db->from('List');
+        $this->db->where('user_id', $user_id);
+        $query = $this->db->get();
         return $query->result();
     }
 
-    function insert_entry()
-    {
-        $this->title = $_POST['title']; // please read the below note
-        $this->content = $_POST['content'];
-        $this->date = time();
-
-        $this->db->insert('entries', $this);
-    }
-
-    function update_entry()
-    {
-        $this->title = $_POST['title'];
-        $this->content = $_POST['content'];
-        $this->date = time();
-
-        $this->db->update('entries', $this, array('id' => $_POST['id']));
+    function create($name, $user_id) {
+        $this->db->insert("List", array("name" => $name, "user_id" => $user_id));
+        return $this->db->insert_id();
     }
 
 }
