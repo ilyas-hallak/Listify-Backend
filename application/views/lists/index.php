@@ -29,9 +29,9 @@
                     <tr>
                         <td><?=$item->name?></td>
                         <td>
-                            <a href="<?=site_url('listelements/index/' . $item->id) ?>" title="Detail Ansicht"><span
+                            <a href="<?=site_url('listelements/index/' . $item->id) ?>" data-toggle="tooltip" data-placement="right" title="Detail Ansicht"><span
                                     class="glyphicon glyphicon-eye-open"></span></a>
-                            <a href="#" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
+                            <a href="#" data-toggle="tooltip" data-placement="right"  title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
 
                         </td>
                     </tr>

@@ -7,12 +7,12 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="../../dist/js/bootstrap.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
+
 <script>
     $(document).ready(function() {
-        $('a').tooltip({
-            placement: 'right'
+        $("[data-toggle='tooltip']").tooltip({
+
         });
     });
 </script>

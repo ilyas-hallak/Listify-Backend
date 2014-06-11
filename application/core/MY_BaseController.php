@@ -31,4 +31,10 @@ class MY_BaseController extends CI_Controller
     function getCurrentUserId() {
         return $this->session->userdata('logged_in')["id"];
     }
+
+    function json($arr) {
+        $this->output->enable_profiler(false);
+        header('Content-Type: application/json');
+        echo json_encode( $arr );
+    }
 }

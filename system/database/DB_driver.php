@@ -406,7 +406,6 @@ class CI_DB_driver {
 
 			$this->CACHE->write($sql, $CR);
 		}
-
 		return $RES;
 	}
 
