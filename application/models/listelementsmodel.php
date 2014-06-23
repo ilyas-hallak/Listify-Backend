@@ -21,7 +21,7 @@ class ListelementsModel extends CI_Model {
                 INNER JOIN Listelement ON List_has_Listelement.`Listelement_id` =  Listelement.id
                 INNER JOIN User ON User.id = List_has_Listelement.user_id
                 INNER JOIN Color ON List_has_Listelement.Color_id = Color.id
-                WHERE List.id = ? AND List.user_id = ?";
+                WHERE List.id = ? AND List.user_id = ? ORDER BY Listelement.id DESC";
 
 
         $query = $this->db->query($sql, array($list_id, $user_id));

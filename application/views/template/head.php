@@ -15,6 +15,9 @@
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
+    <script type="text/javascript" src="../../js/pace.min.js"></script>
+
+
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
     <style type="text/css">
@@ -41,9 +44,27 @@
         div#listElementMenu {
             margin-right: 36px;
         }
-        div.circle {
+        span.circle {
             width: 20px;
             border-radius: 10px;
+            display: inline-block;
+        }
+        .pace .pace-progress {
+            background: #29d;
+            position: fixed;
+            z-index: 2000;
+            top: 60px;
+            left: 0;
+            height: 5px;
+
+            -webkit-transition: width 1s;
+            -moz-transition: width 1s;
+            -o-transition: width 1s;
+            transition: width 1s;
+        }
+
+        .pace-inactive {
+            display: none;
         }
     </style>
 </head>
