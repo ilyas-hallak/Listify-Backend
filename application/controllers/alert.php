@@ -20,7 +20,7 @@ class Alert extends MY_BaseController{
     }
     public function create($list_id)
     {
-        $this->load->model('Alert');
+        $this->load->model('Alertmodel');
         $user_id = $this->session->userdata('logged_in')["id"];
         $name = $this->input->post('zeit');
 
