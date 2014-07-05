@@ -31,7 +31,7 @@
                         <td>
                             <a href="<?=site_url('listelements/index/' . $item->id) ?>" data-toggle="tooltip" data-placement="right" title="Detail Ansicht"><span
                                     class="glyphicon glyphicon-eye-open"></span></a>
-                            <a href="#" data-toggle="tooltip" data-placement="right"  title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
+                            <a href="#" data-toggle="tooltip" data-placement="right"  title="Bearbeiten"><span class="glyphicon glyphicon-trash"></span></a>
 
                             <a href="#" data-toggle="modal" data-target="#ModalAlert" title="Alert legen"><span
                                     class="glyphicon glyphicon-time"></span></a>
