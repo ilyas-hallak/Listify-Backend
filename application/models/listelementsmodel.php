@@ -13,6 +13,8 @@ class ListelementsModel extends CI_Model {
         // Call the Model constructor
         parent::__construct();
 
+        $this->load->library('email');
+
         $config['protocol'] = 'sendmail';
         $config['mailpath'] = '/usr/sbin/sendmail';
         $config['charset'] = 'iso-8859-1';
@@ -29,7 +31,6 @@ class ListelementsModel extends CI_Model {
                 INNER JOIN User ON User.id = List_has_Listelement.user_id
                 INNER JOIN Color ON List_has_Listelement.Color_id = Color.id
                 WHERE List.id = ? AND List.user_id = ? ORDER BY Listelement.id DESC";
-
 
         $query = $this->db->query($sql, array($list_id, $user_id));
 
@@ -86,6 +87,7 @@ class ListelementsModel extends CI_Model {
                 $this->db->insert("Editor", array("list_id" => $list_id, "user_id" => $user->id));
 
 
+
                 $this->sendMail($userName, $listName, $mail);
             }
         }
@@ -109,7 +111,7 @@ class ListelementsModel extends CI_Model {
         $this->email->clear();
 
         $this->email->to($mail);
-        $this->email->from('notifier@listify.com');
+        $this->email->from('system@listify.com');
         $this->email->subject('Einladung zur Liste '.$listName);
         $this->email->message($text);
         $this->email->send();
