@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Simple Login with CodeIgniter</title>
-    <link rel="stylesheet" type="text/css" href="<? echo base_url();?>css/bootstrap/bootstrap2.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/bootstrap/bootstrap2.min.css">
 </head>
 <body>
 <?php echo validation_errors(); ?>

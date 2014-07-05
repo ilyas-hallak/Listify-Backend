@@ -18,13 +18,14 @@ class Alert extends MY_BaseController{
         $data['content'] = $this->load->view('alert/index', null, TRUE);
         $this->load->view('template', $data);
     }
-    public function create($list_id)
+    public function create()
     {
         $this->load->model('Alertmodel');
         $user_id = $this->session->userdata('logged_in')["id"];
-        $name = $this->input->post('zeit');
-
-        $id = $this->Listsmodel->create($name, $user_id, $list_id);
+        $time = $this->input->post('zeit');
+        $date = $this->input->post('date');
+        $list_id = $this->input->post('list_id');
+        $id = $this->alertmodel->create($time, $date, $user_id, $list_id);
 
         redirect("/lists/index/".$id);
     }
