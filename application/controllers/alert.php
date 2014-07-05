@@ -20,13 +20,13 @@ class Alert extends MY_BaseController{
     }
     public function create()
     {
-        $this->load->model('Alertmodel');
+        $this->load->model('alertmodel');
         $user_id = $this->session->userdata('logged_in')["id"];
         $time = $this->input->post('zeit');
         $date = $this->input->post('date');
         $list_id = $this->input->post('list_id');
         $id = $this->alertmodel->create($time, $date, $user_id, $list_id);
 
-        redirect("/lists/index/".$id);
+        //redirect("/lists/index/".$id);
     }
 } 

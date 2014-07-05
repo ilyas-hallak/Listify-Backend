@@ -81,6 +81,13 @@
             <div class="modal-body">
 
                 <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Datum</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="date" id="date" placeholder="08.02.2015">
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Zeit</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="zeit" id="zeit" placeholder="00:00">
