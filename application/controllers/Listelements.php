@@ -38,4 +38,9 @@ class Listelements extends MY_BaseController
         $id = $this->input->post('id');
         $this->ListelementsModel->delete($id);
     }
+
+    function invite() {
+        $mails = $this->input->post('mails');
+        $this->ListelementsModel->invite($mails);
+    }
 }
