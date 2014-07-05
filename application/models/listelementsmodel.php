@@ -29,7 +29,8 @@ class ListelementsModel extends CI_Model {
         return $query->result();
     }
 
-    function create($text, $amount, $list_id, $user_id) {
+    function create($text, $amount, $list_id, $user_id)
+    {
         // save list
         $this->db->insert("Listelement", array("text" => $text, "amount" => $amount));
         $listelement_id = $this->db->insert_id();
@@ -37,7 +38,8 @@ class ListelementsModel extends CI_Model {
         // get/set color
         $query = $this->db->get_where('List_has_Listelement', array('User_id' => $user_id, "List_id" => $list_id), 1, 0);
 
-        if(count($query->result())) {
+        if(count($query->result()))
+        {
             $color_id = $query->result()[0]->Color_id;
             $query = $this->db->get_where('Color', array("id" => $color_id));
             $colorVal = $query->result()[0]->value;
