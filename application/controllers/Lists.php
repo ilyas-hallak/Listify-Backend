@@ -30,11 +30,10 @@ class Lists extends MY_BaseController
     {
         $this->load->model('Listsmodel');
         $user_id = $this->session->userdata('logged_in')["id"];
-        $text = $this->input->post('text');
+        $name = $this->input->post('name');
         $amount = 0;
         $list_id = $this->input->post('list_id');
-        $id = $this->Listsmodel->create($text, $amount, $list_id, $user_id);
-
+        $id = $this->Listsmodel->create($name, $amount, $list_id, $user_id);
         redirect("/Listelements/index/".$id);
     }
 
