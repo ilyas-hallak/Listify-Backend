@@ -43,9 +43,6 @@
     </div>
 </div>
 
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -56,25 +53,16 @@
                     <h4 class="modal-title" id="myModalLabel">Neue Liste erstellen</h4>
                 </div>
                 <div class="modal-body">
-
-
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-                            </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Listen Name">
                         </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="Password">
-                            </div>
-                        </div>
-
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+                    <button type="submit" class="btn btn-primary">Liste Anlegen</button>
                 </div>
             </form>
         </div>

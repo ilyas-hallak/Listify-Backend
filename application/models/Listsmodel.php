@@ -35,8 +35,8 @@ class Listsmodel extends CI_Model
         return $query->result();
     }
 
-    function create($name, $user_id) {
-        $this->db->insert("List", array("name" => $name, "user_id" => $user_id));
+    function create($text, $amount, $list_id, $user_id) {
+        $this->db->insert("List", array("name" => $text, "user_id" => $user_id));
         return $this->db->insert_id();
     }
 
