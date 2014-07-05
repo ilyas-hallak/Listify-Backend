@@ -12,6 +12,13 @@ class ListelementsModel extends CI_Model {
     {
         // Call the Model constructor
         parent::__construct();
+
+        $config['protocol'] = 'sendmail';
+        $config['mailpath'] = '/usr/sbin/sendmail';
+        $config['charset'] = 'iso-8859-1';
+        $config['wordwrap'] = TRUE;
+
+        $this->email->initialize($config);
     }
 
     function getListElementsByListAndUserId($list_id, $user_id, $public = false) {
@@ -62,5 +69,51 @@ class ListelementsModel extends CI_Model {
     function delete($id) {
         $this->db->delete('List_has_Listelement', array('Listelement_id' => $id));
         $this->db->delete('Listelement', array('id' => $id));
+    }
+
+    function invite($mails, $list_id) {
+        $mailsArray = explode(",", $mails);
+        $query = $this->db->get_where("List", array("id" => $list_id));
+        $listName = $query->name;
+        foreach($mails as $mail) {
+            // get user
+            $query = $this->db->get_where("User", array("mail" => $mail));
+            $userName = $mail;
+
+            if(count($query->result())) {
+                $user = $query->result()[0];
+                $userName = $user->mail;
+
+                // create editor
+                $this->db->insert("Editor", array("list_id" => $list_id, "user_id" => $user->id));
+
+
+                $this->sendMail($userName, $listName, $mail);
+            }
+        }
+    }
+
+    private function sendMail($userName, $listName, $mail) {
+        $text = "Hallo $userName,\n
+                \n
+                du wurdest zur Liste $listName eingeladen.\n
+                Über folgenden Link kannst du die Liste einsehen:\n
+                \n
+                LINK\n
+                \n
+                Um die Liste zu bearbeiten, kannst du dich hier kostenlos registrieren.\n
+                \n
+                Liebe Grüße,\n
+                \n
+                Dein Listify Team\n
+                ";
+
+        $this->email->clear();
+
+        $this->email->to($mail);
+        $this->email->from('notifier@listify.com');
+        $this->email->subject('Einladung zur Liste '.$listName);
+        $this->email->message($text);
+        $this->email->send();
     }
 }
