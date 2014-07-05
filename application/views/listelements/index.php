@@ -71,7 +71,7 @@
             $.post("http://localhost:8888/listify-backend/index.php/listelements/create", { "text": text, "amount": 1, "list_id": LIST_ID})
             .done(function( data ) {
                     var item = createNewItem(data.mail, text, data.color);
-                    $('a.list-group-item:first').before(item);
+                    $('input#createItemInput').after(item);
                     $this.val('');
             });
         });
