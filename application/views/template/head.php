@@ -11,7 +11,7 @@
     <title><?=$title ?></title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="<? echo base_url();?>css/bootstrap/bootstrap2.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url();?>css/bootstrap/bootstrap2.min.css">
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
