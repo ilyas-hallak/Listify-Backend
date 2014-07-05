@@ -13,13 +13,12 @@ class alertmodel extends CI_Model {
         parent::__construct();
     }
 
-    public function create($time, $date, $user_id, $list_id)
+    function create($time, $date, $user_id, $list_id)
     {
         $dateTime  = date_create($date, $time);
         $formatDate = date_format($dateTime, 'Y-m-d H:i:s');
         $this->db->insert("alert", array("date" => $formatDate));
-        $alertid = $this->db->insert_id();
-
-
+        $alert_id = $this->db->insert_id();
+        $this->db->insert("list_has_alert", array("List_id" => $list_id, "List_user_id" => $user_id, "Alert_id" => $alert_id));
     }
 } 
