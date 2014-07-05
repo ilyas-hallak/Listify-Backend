@@ -34,7 +34,7 @@
                             <a href="#" data-toggle="tooltip" data-placement="right"  title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
 
                             <a href="#" data-toggle="modal" data-target="#ModalAlert" title="Alert legen"><span
-                                    class="glyphicon glyphicon-eye-open"></span></a>
+                                    class="glyphicon glyphicon-time"></span></a>
                         </td>
                     </tr>
                 <?php endforeach;?>
