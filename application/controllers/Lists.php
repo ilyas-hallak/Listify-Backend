@@ -37,6 +37,12 @@ class Lists extends MY_BaseController
         redirect("/Listelements/index/".$id);
     }
 
+    public function delete($list_id) {
+        $this->load->model('Listsmodel');
+        $this->Listsmodel->delete($list_id);
+        redirect("/Lists/index/".$list_id);
+    }
+
     public function bla()
     {
         echo "bla";

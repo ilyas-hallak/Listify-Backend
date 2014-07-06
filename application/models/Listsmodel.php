@@ -28,7 +28,7 @@ class Listsmodel extends CI_Model
 
     function getAllListsByUserId($user_id)
     {
-        $this->db->select('*');
+        $this->db->select('List.*');
         $this->db->from('List');
         $this->db->join('Editor', 'Editor.list_id = List.id', 'left');
         $this->db->where('List.user_id', $user_id);
@@ -42,6 +42,25 @@ class Listsmodel extends CI_Model
     function create($text, $amount, $list_id, $user_id) {
         $this->db->insert("List", array("name" => $text, "user_id" => $user_id));
         return $this->db->insert_id();
+    }
+
+    function delete($list_id) {
+        // editoren löschen
+        $this->db->delete('Editor', array('list_id' => $list_id));
+
+        // liste has elements holen
+        $query = $this->db->get_where('List_has_Listelement', array('list_id' => $list_id));
+        foreach($query->result() as $item) {
+
+            // list has elemenets löschen
+            $this->db->delete('List_has_Listelement', array('Listelement_id' => $item->Listelement_id));
+
+            // listelements löschen
+            $this->db->delete('Listelement', array('id' => $item->Listelement_id));
+        }
+
+        // list löschen
+        $this->db->delete('List', array('id' => $list_id));
     }
 
 }
