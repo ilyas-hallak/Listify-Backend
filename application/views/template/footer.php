@@ -1,7 +1,7 @@
 </div><!-- /.container -->
 
 <div class="footer">
-    <p>© HYN Inc. 2014</p>
+    <p style="text-align: center;">© HYN Inc. 2014</p>
 </div>
 
 <div class="top-right notifications" style="top: 74px;"></div>

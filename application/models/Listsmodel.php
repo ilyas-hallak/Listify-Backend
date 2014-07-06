@@ -70,12 +70,14 @@ class Listsmodel extends CI_Model
             WHERE List_has_Listelement.`List_id` = 1
             Group By value;
         */
-        $this->db->select('Color.*');
+        $this->db->select('Color.value, User.mail');
         $this->db->from('List_has_Listelement');
         $this->db->join('Color', 'Color.id = List_has_Listelement.Color_id', 'inner');
+        $this->db->join('User', 'User.id = List_has_Listelement.user_id', 'inner');
         $this->db->where('List_has_Listelement.List_id', $list_id);
         $this->db->group_by("value");
-
+        $query = $this->db->get();
+        return $query->result();
 
     }
 

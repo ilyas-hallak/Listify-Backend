@@ -6,7 +6,7 @@
  * Time: 22:56
  * To change this template use File | Settings | File Templates.
  */
-
+$counter = 0;
 ?>
 
 
@@ -26,10 +26,15 @@
             </thead>
             <tbody>
                 <?php foreach ($contentData as $item): ?>
-                    <?php //var_dump($item); echo "<hr>";?>
                     <tr>
                         <td><?=$item->name?></td>
-                        <td></td>
+                        <td>
+                            <?php
+                                foreach($colors[$counter] as $color) {
+                                    echo '<span class="circle" style="background-color: #'.$color->value.';" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="'.$color->mail.'">&nbsp;</span>&nbsp;';
+                                }
+                            ?>
+                        </td>
                         <td align="right">
                             <a href="<?=site_url('listelements/index/' . $item->id) ?>" data-toggle="tooltip" data-placement="right" title="Detail Ansicht"><span class="glyphicon glyphicon-eye-open"></span></a>
                             <a href="#" class="addAlert" data-target="#ModalAlert" data-toggle="modal" data-placement="right"  data-id="<?=$item->id?>"  title="Alert legen"><span data-toggle="tooltip" data-placement="right" title="Erinnerung setzen" class="glyphicon glyphicon-time"></span></a>
@@ -42,6 +47,8 @@
                             <?php endif; ?>
                         </td>
                     </tr>
+                    <?php $counter++; ?>
+
                 <?php endforeach;?>
             </tbody>
         </table>
