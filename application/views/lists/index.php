@@ -26,15 +26,20 @@
             </thead>
             <tbody>
                 <?php foreach ($contentData as $item): ?>
+                    <?php //var_dump($item); echo "<hr>";?>
                     <tr>
                         <td><?=$item->name?></td>
                         <td>
                             <a href="<?=site_url('listelements/index/' . $item->id) ?>" data-toggle="tooltip" data-placement="right" title="Detail Ansicht"><span
                                     class="glyphicon glyphicon-eye-open"></span></a>
-                            <a href="#" data-toggle="tooltip" data-placement="right"  title="Löschen"><span class="glyphicon glyphicon-trash"></span></a>
-
                             <a href="#" data-toggle="modal" data-target="#ModalAlert" title="Alert legen"><span
                                     class="glyphicon glyphicon-time"></span></a>
+                            <?php if($item->id == null): ?>
+                                <!--a href="<?=site_url('lists/leave/' . $item->id)?>" data-toggle="tooltip" data-placement="right"  title="Löschen"><span class="glyphicon glyphicon-trash"></span></a-->
+                            <?php endif; ?>
+                            <?php if($item->id != null): ?>
+                                <a href="<?=site_url('lists/delete/' . $item->id)?>" data-toggle="tooltip" data-placement="right"  title="Löschen"><span class="glyphicon glyphicon-trash"></span></a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach;?>
