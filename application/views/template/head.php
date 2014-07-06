@@ -33,6 +33,8 @@
         .footer {
             padding-top: 40px;
             padding-bottom: 40px;
+            padding-left:100px;
+            background-color:#CEF6E3;
             margin-top: 40px;
             border-top: 1px solid #eee;
         }
@@ -80,7 +82,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Listify</a>
+            <a class="navbar-brand" href="<?=site_url("home/index")?>"><img width="50" src="../pics/listify-logo.png"></a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -90,6 +92,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a style="padding: 0px;" href="<?=site_url("profile/index")?>">
                         <img id="profileImg" width="40" src="<?=("../pics/".$this->session->userdata('logged_in')["pic"]);?>"></a></li>
+                <li> <a href="<?=site_url("home/logout")?>"> <span class="glyphicon glyphicon-off"></span> </a>
+
+                </li>
+
             </ul>
 
         </div>
