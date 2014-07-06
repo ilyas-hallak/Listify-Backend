@@ -30,7 +30,7 @@
                     <span class="circle" style="background-color: #<?=$item->value?>;" data-toggle="tooltip" data-placement="left"  title="<?=$item->mail?>">&nbsp;</span>
                     <span><?=$item->text?></span>
                     <span class="pull-right">
-                        <button type="button" data-toggle="tooltip" data-placement="right" data-id="<?=$item->id?>" title="Löschen" class="close" aria-hidden="true">&times;</button>
+
                     </span>
                 </a>
             <?php endforeach ?>
@@ -66,42 +66,3 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    LIST_ID = <?=$list_id?>;
-    $(function() {
-
-        $('#createItemInput').bind("enterKey",function(e){
-            $this = $(this);
-            var text = $this.val();
-
-            $.post("http://localhost:8888/listify-backend/index.php/listelements/create", { "text": text, "amount": 1, "list_id": LIST_ID})
-            .done(function( data ) {
-                    var item = createNewItem(data.mail, text, data.color);
-                    $('input#createItemInput').after(item);
-                    $this.val('');
-            });
-        });
-        $('#createItemInput').keyup(function(e){
-            if(e.keyCode == 13)
-            {
-                $(this).trigger("enterKey");
-            }
-        });
-
-        $("body").on("click", "button.close", function(e){
-            var id = $(this).data('id');
-            $.post("http://localhost:8888/listify-backend/index.php/listelements/delete", {"id": id})
-            .done(function( data ) {
-                // TODO NACHRICHT ANZEIGEN!!
-            });
-            $this = $(this).parent().parent();
-            $this.css("background-color", "#e74c3c");
-            $this.fadeOut();
-        });
-    });
-
-    var createNewItem = function (mail, text, color) {
-        return html = '<a href="#" class="list-group-item" ><span class="circle" style="background-color: #'+color+'" data-toggle="tooltip" data-placement="left"  title="__">&nbsp;</span><span> '+text+'</span><span class="pull-right"><button type="button" data-toggle="tooltip" data-placement="right"  title="Löschen" class="close" aria-hidden="true">&times;</button></span> </a>';
-    };
-</script>
