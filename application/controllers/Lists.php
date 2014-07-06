@@ -43,9 +43,15 @@ class Lists extends MY_BaseController
         redirect("/Lists/index/".$list_id);
     }
 
-    public function bla()
-    {
-        echo "bla";
+    public function update() {
+        $list_id = $this->input->post('list_id');
+        $listname = $this->input->post('listname');
+
+        $this->db->where('id', $list_id);
+        $this->db->update('List', array(
+            'name' => $listname
+        ));
+        redirect("/Lists/index/".$list_id);
     }
 
 }

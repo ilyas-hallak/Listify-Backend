@@ -27,53 +27,55 @@ class alertmodel extends CI_Model {
         $this->email->initialize($config);
     }
 
-    function create($time, $date, $user_id, $list_id)
-    {
-        $dateTime  = date_create($date, $time);
-        $formatDate = date_format($dateTime, 'Y-m-d H:i');
+    function create($time, $date, $user_id, $list_id) {
+
+        $originalDate = $date." " .$time;
+        $newDate = date("Y-m-d", strtotime($originalDate));
+
+        $formatDate = $newDate." " .$time;
+
         $this->db->insert("alert", array("date" => $formatDate));
         $alert_id = $this->db->insert_id();
+
+
         $this->db->insert("list_has_alert", array("List_id" => $list_id, "List_user_id" => $user_id, "Alert_id" => $alert_id));
     }
 
-    function reminder()
-    {
-        $this->db->select('*');
-        $this->db->from('List_has_Alert');
-        $this->db->join('Alert', 'Alert.id', 'List_has_Alert.alert_id');
-        $this->db->join('User','User.id', 'List_user_id');
+    function reminder() {
 
-//        $format = "DATE_RFC1123";
+        $this->db->select('*');
+        $this->db->from('Alert');
+        $this->db->join('List_has_Alert', 'Alert.id = List_has_Alert.alert_id', 'inner');
+        $this->db->join('List', 'List.id = List_has_Alert.List_id', 'inner');
+        $this->db->join('User','User.id = List_user_id', 'inner');
+
         $datestring = "%Y-%m-%d %H:%i";
 
         $now = now();
 
         $mdate = mdate($datestring, $now);
-       $this->db->like('date', $mdate);
+        $this->db->like('date', $mdate);
         $this->db->group_by("User.id");
         $query = $this->db->get();
 
         foreach($query->result() as $item) {
-            var_dump($item); echo "<hr>";
+            $this->sendMail($item->mail, $item->name, $item->date, $item->List_id);
         }
-
-
     }
 
-    private function sendMail($userName, $listName, $list_id) {
+    private function sendMail($userName, $listName, $datum, $list_id) {
         $this->email->set_newline("\r\n");
-        $text = "Hallo $userName,\n
-                \n
-                du hast eine Erinnerung auf $listName gelegt.\n
-                Über folgenden Link kannst du die Liste einsehen:\n
-                \n
-                ".site_url("invite/index/".$list_id)."\n
-                \n
-                Um die Liste zu bearbeiten, kannst du dich hier kostenlos registrieren.\n
-                \n
-                Liebe Grüße,\n
-                \n
-                Dein Listify Team\n
+        $text = "Hallo $userName,<br>
+                <br>
+                du hast eine Erinnerung um $datum auf $listName gelegt.<br>
+                Über folgenden Link kannst du die Liste einsehen:<br>
+                <br>
+                ".site_url("listelements/index/".$list_id)."<br>
+                <br>
+                <br>
+                Liebe Grüße,<br>
+                <br>
+                Dein Listify Team<br>
                 ";
 
         $this->email->clear();
@@ -82,7 +84,6 @@ class alertmodel extends CI_Model {
         $this->email->from('system@listify.com');
         $this->email->subject('Erinnerung Deiner Liste '.$listName);
         $this->email->message($text);
-        echo $text;
         $this->email->send();
     }
 
