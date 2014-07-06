@@ -34,11 +34,11 @@ class alertmodel extends CI_Model {
 
         $formatDate = $newDate." " .$time;
 
-        $this->db->insert("alert", array("date" => $formatDate));
+        $this->db->insert("Alert", array("date" => $formatDate));
         $alert_id = $this->db->insert_id();
 
 
-        $this->db->insert("list_has_alert", array("List_id" => $list_id, "List_user_id" => $user_id, "Alert_id" => $alert_id));
+        $this->db->insert("List_has_Alert", array("List_id" => $list_id, "List_user_id" => $user_id, "Alert_id" => $alert_id));
     }
 
     function reminder() {
@@ -61,6 +61,25 @@ class alertmodel extends CI_Model {
         foreach($query->result() as $item) {
             $this->sendMail($item->mail, $item->name, $item->date, $item->List_id);
         }
+    }
+
+    function reminderByUserId($user_id) {
+        $this->db->select('*');
+        $this->db->from('Alert');
+        $this->db->join('List_has_Alert', 'Alert.id = List_has_Alert.alert_id', 'inner');
+        $this->db->join('List', 'List.id = List_has_Alert.List_id', 'inner');
+        $this->db->join('User','User.id = List_user_id', 'inner');
+        $this->db->where('User.id', $user_id);
+        $datestring = "%Y-%m-%d %H:%i";
+
+        $now = now();
+
+        $mdate = mdate($datestring, $now);
+        $this->db->like('date', $mdate);
+        $this->db->group_by("User.id");
+        $query = $this->db->get();
+
+        return $query->result();
     }
 
     private function sendMail($userName, $listName, $datum, $list_id) {
