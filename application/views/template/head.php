@@ -82,7 +82,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img src="<?=base_url()."logo/logo.png"?>"width="50" height="60"></a>
+            <a class="navbar-brand" href="#"><img src="<?=base_url()."logo/logo.png"?>"width="50" height="40"></a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
