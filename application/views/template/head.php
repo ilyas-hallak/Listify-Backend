@@ -73,6 +73,8 @@
 
 <body>
 
+<?php $pic = (array_key_exists("pic",$this->session->userdata('logged_in')))?$this->session->userdata('logged_in')["pic"]:"spock.png";?>
+
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -82,7 +84,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" style="padding: 0;padding-top: 11px;"><img src="<?=base_url()."logo/logo.png"?>"width="50" height="40"></a>
+            <a class="navbar-brand" href="#" style="padding: 0;padding-top: 11px;padding-right: 12px;"><img src="<?=base_url()."logo/logo.png"?>"width="50" height="40"></a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -91,7 +93,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a style="padding: 0px;" href="<?=site_url("profile/index")?>">
-                        <img id="profileImg" width="40" src="<?=base_url()."pics/".$this->session->userdata('logged_in')["pic"];?>"></a></li>
+                        <img id="profileImg" width="40" src="<?=base_url()."pics/".$pic?>"></a></li>
                 <li><a style="padding: 0px;top: 17px;left: 21px;" href="<?=site_url("home/logout")?>">
                         <span class="glyphicon glyphicon-off"></span></a></li>
             </ul>
@@ -103,4 +105,5 @@
 <br/>
 
 <div class="container">
+
 

@@ -31,29 +31,18 @@
                         <input id="password" type="password" class="form-control" name="password" placeholder="password">
                     </div>
 
-                    <div class="input-group">
-                        <div class="checkbox">
-                            <label>
-                                <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                            </label>
-                        </div>
-                    </div>
-
-
                     <div style="margin-top:10px" class="form-group">
                         <!-- Button -->
 
                         <div class="col-sm-12 controls">
                             <button type="submit" id="btn-login" href="#" class="btn btn-success">Login  </button>
-                            <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>
-
                         </div>
+                        <br />
                     </div>
                     <br />
                     <div class="form-group">
                         <div class="col-md-12 control">
                             <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                                Don't have an account!
                                 <?=anchor("login/register", "Registrieren")?>
 
                             </div>

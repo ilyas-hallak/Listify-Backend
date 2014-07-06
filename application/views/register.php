@@ -49,17 +49,10 @@
                         <!-- Button -->
                         <div class="col-md-offset-3 col-md-9">
                             <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Registrieren</button>
-                            <span style="margin-left:8px;">oder</span>
                         </div>
                     </div>
 
-                    <div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
 
-                        <div class="col-md-offset-3 col-md-9">
-                            <button id="btn-fbsignup" type="submit" class="btn btn-primary"><i class="icon-facebook"></i>Mit Facebook Anmelden</button>
-                        </div>
-
-                    </div>
 
 
 

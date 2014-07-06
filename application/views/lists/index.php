@@ -25,6 +25,11 @@ $counter = 0;
             </tr>
             </thead>
             <tbody>
+            <?php
+                if(!count($contentData)) {
+                    echo '<div class="alert alert-info" role="alert">Keine Listen vorhanden!</div>';
+                }
+            ?>
                 <?php foreach ($contentData as $item): ?>
                     <tr>
                         <td><?=$item->name?></td>
