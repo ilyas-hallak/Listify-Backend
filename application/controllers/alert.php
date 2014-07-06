@@ -31,8 +31,12 @@ class Alert extends MY_BaseController{
     }
     public function reminder()
     {
-        $this->load->model('alertmodel');
 
+        $this->load->model('alertmodel');
+        $id = $this->alertmodel->reminder();
+        $data['title'] = 'Meine Erinnerungen';
+        $data['content'] = "";
+        $this->load->view('template', $data);
 
     }
 } 
