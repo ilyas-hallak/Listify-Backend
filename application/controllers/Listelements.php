@@ -25,7 +25,6 @@ class Listelements extends MY_BaseController
     }
 
     function create() {
-
         $user_id = $this->getCurrentUserId();
         $list_id = $this->input->post('list_id');
         $text = $this->input->post('text');
@@ -43,5 +42,7 @@ class Listelements extends MY_BaseController
         $mails = $this->input->post('mails');
         $list_id = $this->input->post('list_id');
         $this->ListelementsModel->invite($mails, $list_id);
+        redirect("/Listelements/index/".$list_id);
+
     }
 }

@@ -27,11 +27,11 @@ class Alert extends MY_BaseController{
         $list_id = $this->input->post('list_id');
         $id = $this->alertmodel->create($time, $date, $user_id, $list_id);
 
-        //redirect("/lists/index/".$id);
+        redirect("/lists/index/");
     }
+
     public function reminder()
     {
-
         $this->load->model('alertmodel');
         $id = $this->alertmodel->reminder();
         $data['title'] = 'Meine Erinnerungen';
