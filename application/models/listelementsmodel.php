@@ -95,6 +95,7 @@ class ListelementsModel extends CI_Model {
         $mailsArray = explode(",", $mails);
         $query = $this->db->get_where("List", array("id" => $list_id));
         $listName = $query->result()[0]->name;
+
         foreach($mailsArray as $mail) {
             // get user
             $query = $this->db->get_where("User", array("mail" => $mail));
