@@ -29,4 +29,10 @@ class Alert extends MY_BaseController{
 
         //redirect("/lists/index/".$id);
     }
+    public function reminder()
+    {
+        $this->load->model('alertmodel');
+
+
+    }
 } 

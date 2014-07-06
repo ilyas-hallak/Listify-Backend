@@ -21,4 +21,17 @@ class alertmodel extends CI_Model {
         $alert_id = $this->db->insert_id();
         $this->db->insert("list_has_alert", array("List_id" => $list_id, "List_user_id" => $user_id, "Alert_id" => $alert_id));
     }
+
+    function reminder($user_id, $list_id, $alert_id)
+    {
+        $this->db->select('*');
+        $this->db->from('List_has_Alert');
+        $this->db->join('Alert', 'id = Alert.id');
+        $now = now();
+        $this->db->where('date', $now);
+
+
+        $query = $this->db->get();
+        return $query->result();
+    }
 } 
