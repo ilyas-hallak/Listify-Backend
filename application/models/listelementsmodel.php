@@ -13,12 +13,16 @@ class ListelementsModel extends CI_Model {
         // Call the Model constructor
         parent::__construct();
 
-        $this->load->library('email');
-
-        $config['protocol'] = 'sendmail';
-        $config['mailpath'] = '/usr/sbin/sendmail';
-        $config['charset'] = 'iso-8859-1';
-        $config['wordwrap'] = TRUE;
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'listifytest@gmail.com',
+            'smtp_pass' => 'hyn123456',
+            'mailtype'  => 'html',
+            'charset'   => 'iso-8859-1'
+        );
+        $this->load->library('email', $config);
 
         $this->email->initialize($config);
     }
@@ -33,6 +37,20 @@ class ListelementsModel extends CI_Model {
                 WHERE List.id = ? AND List.user_id = ? ORDER BY Listelement.id DESC";
 
         $query = $this->db->query($sql, array($list_id, $user_id));
+
+        return $query->result();
+    }
+
+    function getListElementsByListId($list_id) {
+
+        $sql = "SELECT Listelement.text, List_has_Listelement.`Color_id`, Color.value, User.mail, Listelement.id  FROM List
+                INNER JOIN List_has_Listelement ON List.id = List_has_Listelement.List_id
+                INNER JOIN Listelement ON List_has_Listelement.`Listelement_id` =  Listelement.id
+                INNER JOIN User ON User.id = List_has_Listelement.user_id
+                INNER JOIN Color ON List_has_Listelement.Color_id = Color.id
+                WHERE List.id = ? ORDER BY Listelement.id DESC";
+
+        $query = $this->db->query($sql, array($list_id));
 
         return $query->result();
     }
@@ -75,8 +93,8 @@ class ListelementsModel extends CI_Model {
     function invite($mails, $list_id) {
         $mailsArray = explode(",", $mails);
         $query = $this->db->get_where("List", array("id" => $list_id));
-        $listName = $query->name;
-        foreach($mails as $mail) {
+        $listName = $query->result()[0]->name;
+        foreach($mailsArray as $mail) {
             // get user
             $query = $this->db->get_where("User", array("mail" => $mail));
             $userName = $mail;
@@ -88,20 +106,19 @@ class ListelementsModel extends CI_Model {
                 // create editor
                 $this->db->insert("Editor", array("list_id" => $list_id, "user_id" => $user->id));
 
-
-
-                $this->sendMail($userName, $listName, $mail);
+                $this->sendMail($userName, $listName, $list_id, $mail);
             }
         }
     }
 
-    private function sendMail($userName, $listName, $mail) {
+    private function sendMail($userName, $listName, $list_id, $mail) {
+        $this->email->set_newline("\r\n");
         $text = "Hallo $userName,\n
                 \n
                 du wurdest zur Liste $listName eingeladen.\n
                 Über folgenden Link kannst du die Liste einsehen:\n
                 \n
-                LINK\n
+                ".site_url("invite/index/".$list_id)."\n
                 \n
                 Um die Liste zu bearbeiten, kannst du dich hier kostenlos registrieren.\n
                 \n
@@ -116,6 +133,7 @@ class ListelementsModel extends CI_Model {
         $this->email->from('system@listify.com');
         $this->email->subject('Einladung zur Liste '.$listName);
         $this->email->message($text);
+        echo $text;
         $this->email->send();
     }
 }

@@ -41,6 +41,7 @@ class Listelements extends MY_BaseController
 
     function invite() {
         $mails = $this->input->post('mails');
-        $this->ListelementsModel->invite($mails);
+        $list_id = $this->input->post('list_id');
+        $this->ListelementsModel->invite($mails, $list_id);
     }
 }

@@ -14,12 +14,17 @@
 <div class="row">
     <div class="col-md-1" id="listElementMenu">
         <ul class="nav nav-pills nav-stacked pull-left">
-            <li><a href="#" data-toggle="modal" data-target="#myModal2">Einladen</a></li>
+            <!--li><a href="#" data-toggle="modal" data-target="#myModal2">Einladen</a></li-->
         </ul>
     </div>
     <div class="col-md-7">
         <div class="list-group">
-            <input id="createItemInput" autofocus type="text" style="width: 653px;" class="input list-group-item" placeholder="Neues Item" />
+            <?php if(count($data)==0): ?>
+                <div class="alert alert-info" role="alert">
+                    Die Liste ist leer<br/>
+                    Um Einträge hinzuzufügen musst du eingeloggt sein!
+                </div>
+            <?php endif; ?>
             <?php foreach($data as $item): ?>
                 <a href="#" class="list-group-item" >
                     <span class="circle" style="background-color: #<?=$item->value?>;" data-toggle="tooltip" data-placement="left"  title="<?=$item->mail?>">&nbsp;</span>

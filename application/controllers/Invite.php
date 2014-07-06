@@ -11,9 +11,16 @@ class Invite extends CI_Controller {
     function __construct()
     {
         parent::__construct();
+        $this->load->model("ListelementsModel");
+
     }
 
     function index($list_id) {
-
+        // echo $list_id;
+        $vars['data'] = $this->ListelementsModel->getListElementsByListId($list_id);
+        $vars["list_id"] = $list_id;
+        $data['title'] = 'Listen Übersicht';
+        $data['content'] = $this->load->view('listelements/index2', $vars, TRUE);
+        $this->load->view('template', $data);
     }
 }
