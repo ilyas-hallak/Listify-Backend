@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'root';
-$db['default']['database'] = 'listify';
+$db['default']['hostname'] = '195.37.176.178:11336';
+$db['default']['username'] = 'hyn';
+$db['default']['password'] = 'hyn';
+$db['default']['database'] = 'hyn';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
