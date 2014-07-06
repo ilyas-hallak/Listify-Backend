@@ -92,6 +92,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a style="padding: 0px;" href="<?=site_url("profile/index")?>">
                         <img id="profileImg" width="40" src="<?=base_url()."pics/".$this->session->userdata('logged_in')["pic"];?>"></a></li>
+                <li><a style="padding: 0px;top: 17px;left: 21px;" href="<?=site_url("home/logout")?>">
+                        <span class="glyphicon glyphicon-off"></span></a></li>
             </ul>
 
         </div>
