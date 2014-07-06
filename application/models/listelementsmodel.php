@@ -134,7 +134,6 @@ class ListelementsModel extends CI_Model {
         $this->email->from('system@listify.com');
         $this->email->subject('Einladung zur Liste '.$listName);
         $this->email->message($text);
-        echo $text;
         $this->email->send();
     }
 }

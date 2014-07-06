@@ -43,5 +43,7 @@ class Listelements extends MY_BaseController
         $mails = $this->input->post('mails');
         $list_id = $this->input->post('list_id');
         $this->ListelementsModel->invite($mails, $list_id);
+        redirect("/Listelements/index/".$list_id);
+
     }
 }
