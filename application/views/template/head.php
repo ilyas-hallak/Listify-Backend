@@ -88,7 +88,7 @@
                 <li class="<?=($this->uri->segment(1)==='lists') || ($this->uri->segment(1)==='listelements')?'active':''?>"><?=anchor("lists/index","Meine Listen")?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a style="padding: 0px;" href="<?=site_url("profile/index")?>"><img id="profileImg" src="http://placehold.it/40x40"></a></li>
+                <li><a style="padding: 0px;" href="<?=site_url("profile/index")?>"><img id="profileImg" src="Backend/listify-backend/pics<?=$this->session->userdata('logged_in')["pic"]?>"></a></li>
             </ul>
 
         </div>
