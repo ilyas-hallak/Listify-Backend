@@ -23,7 +23,7 @@ class Profile extends MY_BaseController
 
             $data2['contentData'] = "profil";
 
-            $data['title'] = 'Listen Übersicht';
+            $data['title'] = 'Profil';
             $data['content'] = $this->load->view('profile/index', $result[0], TRUE);
             $this->load->view('template', $data);
         }

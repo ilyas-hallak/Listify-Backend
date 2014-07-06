@@ -19,7 +19,7 @@ class Invite extends CI_Controller {
         // echo $list_id;
         $vars['data'] = $this->ListelementsModel->getListElementsByListId($list_id);
         $vars["list_id"] = $list_id;
-        $data['title'] = 'Listen Übersicht';
+        $data['title'] = 'Einladen';
         $data['content'] = $this->load->view('listelements/index2', $vars, TRUE);
         $this->load->view('template', $data);
     }

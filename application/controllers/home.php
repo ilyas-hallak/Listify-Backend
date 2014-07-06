@@ -14,7 +14,7 @@ class Home extends MY_BaseController {
             $session_data = $this->session->userdata('logged_in');
             $data2['username'] = $session_data['username'];
 
-            $data['title'] = 'Listen Übersicht';
+            $data['title'] = 'Listify Home';
             $data['content'] = $this->load->view('home', $data2, TRUE);
             $this->load->view('template', $data);
         }

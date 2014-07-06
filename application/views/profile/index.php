@@ -9,7 +9,7 @@
 
 ?>
 
-<h3>jojoo</h3>
+<h3>Dein Profil</h3>
 
 <form class="form-horizontal" role="form">
     <div class="form-group">
