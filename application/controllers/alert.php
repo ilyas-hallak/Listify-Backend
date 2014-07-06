@@ -30,13 +30,15 @@ class Alert extends MY_BaseController{
         redirect("/lists/index/");
     }
 
-    public function reminder()
-    {
+    public function reminder() {
         $this->load->model('alertmodel');
         $id = $this->alertmodel->reminder();
-        $data['title'] = 'Meine Erinnerungen';
-        $data['content'] = "";
-        $this->load->view('template', $data);
+    }
 
+    public function reminderAjax() {
+        $user_id = $this->input->post('user_id');
+        $this->load->model('alertmodel');
+        $data = $this->alertmodel->reminderByUserId($user_id);
+        $this->json($data);
     }
 } 

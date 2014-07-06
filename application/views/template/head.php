@@ -12,6 +12,8 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="<?= base_url();?>css/bootstrap/bootstrap2.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url();?>css/bootstrap/bootstrap-notify.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url();?>css/bootstrap/alert-blackgloss.css">
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -89,7 +91,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a style="padding: 0px;" href="<?=site_url("profile/index")?>">
-                        <img id="profileImg" width="40" src="<?=("../../pics/".$this->session->userdata('logged_in')["pic"]);?>"></a></li>
+                        <img id="profileImg" width="40" src="<?=base_url()."pics/".$this->session->userdata('logged_in')["pic"];?>"></a></li>
             </ul>
 
         </div>

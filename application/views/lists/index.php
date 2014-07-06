@@ -31,8 +31,8 @@
                         <td><?=$item->name?></td>
                         <td>
                             <a href="<?=site_url('listelements/index/' . $item->id) ?>" data-toggle="tooltip" data-placement="right" title="Detail Ansicht"><span class="glyphicon glyphicon-eye-open"></span></a>
-                            <a href="#" class="addAlert" data-toggle="modal" data-target="#ModalAlert" data-id="<?=$item->id?>" title="Alert legen"><span class="glyphicon glyphicon-time"></span></a>
-                            <a href="#" class="editLink" data-toggle="modal" data-target="#ModalUpdate" data-id="<?=$item->id?>" data-listname="<?=$item->name?>" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
+                            <a href="#" class="addAlert" data-toggle="tooltip" data-placement="right" data-toggle="modal" data-target="#ModalAlert" data-id="<?=$item->id?>"  title="Alert legen"><span class="glyphicon glyphicon-time"></span></a>
+                            <a href="#" class="editLink" data-toggle="tooltip" data-placement="right" data-toggle="modal" data-target="#ModalUpdate" data-id="<?=$item->id?>" data-listname="<?=$item->name?>" data-toggle="tooltip" data-placement="right" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
                             <?php if($item->id == null): ?>
                                 <!--a href="<?=site_url('lists/leave/' . $item->id)?>" data-toggle="tooltip" data-placement="right"  title="Löschen"><span class="glyphicon glyphicon-trash"></span></a-->
                             <?php endif; ?>

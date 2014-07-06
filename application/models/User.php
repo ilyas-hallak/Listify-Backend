@@ -6,7 +6,7 @@ Class User extends CI_Model
     function login($mail, $password)
     {
         $this->db->select('*');
-        $this->db->from('user');
+        $this->db->from('User');
         $this->db->where('mail', $mail);
         $this->db->where('password', MD5($password));
         $this->db->limit(1);
@@ -30,7 +30,7 @@ Class User extends CI_Model
             throw new Exception("Benutzer schon vorhanden!");
         }
 
-        $this->db->insert('user', $data);
+        $this->db->insert('User', $data);
 
         $sess_array = array(
             'id' => $this->db->insert_id(),
@@ -41,7 +41,7 @@ Class User extends CI_Model
 
     function userExists($mail) {
         $this->db->select('id, mail, password');
-        $this->db->from('user');
+        $this->db->from('User');
         $this->db->where('mail', $mail);
         $this->db->limit(1);
 
