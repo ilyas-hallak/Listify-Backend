@@ -30,7 +30,11 @@ class Listsmodel extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('List');
-        $this->db->where('user_id', $user_id);
+        $this->db->join('Editor', 'Editor.list_id = List.id', 'left');
+        $this->db->where('List.user_id', $user_id);
+        $this->db->or_where('Editor.user_id', $user_id);
+        $this->db->group_by("List.id");
+
         $query = $this->db->get();
         return $query->result();
     }
