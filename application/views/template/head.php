@@ -89,7 +89,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a style="padding: 0px;" href="<?=site_url("profile/index")?>">
-                        <img id="profileImg" width="40" src="<?=("../../pics/".$this->session->userdata('logged_in')["pic"]);?>"></a></li>
+                        <img id="profileImg" width="40" src="<?=base_url()."pics/".$this->session->userdata('logged_in')["pic"]?>"></a></li>
             </ul>
 
         </div>
