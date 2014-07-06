@@ -19,7 +19,7 @@ class Listelements extends MY_BaseController
 
         $vars['data'] = $this->ListelementsModel->getListElementsByListAndUserId($list_id, $this->getCurrentUserId());
         $vars["list_id"] = $list_id;
-        $data['title'] = 'Listen Übersicht';
+        $data['title'] = 'Elemente einfügen';
         $data['content'] = $this->load->view('listelements/index', $vars, TRUE);
         $this->load->view('template', $data);
     }

@@ -21,7 +21,7 @@ class Lists extends MY_BaseController
 
         $data2['contentData'] = $this->Listsmodel->getAllListsByUserId($user_id);
 
-        $data['title'] = 'Listen Übersicht';
+        $data['title'] = 'Meine Listen';
         $data['content'] = $this->load->view('lists/index', $data2, TRUE);
         $this->load->view('template', $data);
     }
