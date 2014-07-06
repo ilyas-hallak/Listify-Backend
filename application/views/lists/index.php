@@ -31,8 +31,8 @@
                         <td><?=$item->name?></td>
                         <td>
                             <a href="<?=site_url('listelements/index/' . $item->id) ?>" data-toggle="tooltip" data-placement="right" title="Detail Ansicht"><span class="glyphicon glyphicon-eye-open"></span></a>
-                            <a href="#" data-toggle="modal" data-target="#ModalUpdate" title="Alert legen"><span class="glyphicon glyphicon-time"></span></a>
-                            <a href="#" class="editLink" data-toggle="modal" data-target="#myModal" data-id="<?=$item->id?>" data-listname="<?=$item->name?>" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
+                            <a href="#" class="addAlert" data-toggle="modal" data-target="#ModalAlert" data-id="<?=$item->id?>" title="Alert legen"><span class="glyphicon glyphicon-time"></span></a>
+                            <a href="#" class="editLink" data-toggle="modal" data-target="#ModalUpdate" data-id="<?=$item->id?>" data-listname="<?=$item->name?>" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
                             <?php if($item->id == null): ?>
                                 <!--a href="<?=site_url('lists/leave/' . $item->id)?>" data-toggle="tooltip" data-placement="right"  title="Löschen"><span class="glyphicon glyphicon-trash"></span></a-->
                             <?php endif; ?>
@@ -74,9 +74,9 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="ModalAlert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+<div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
     <div class="modal-dialog">
-        <?=form_open('alert/create', array("id" => "createform", "class"=>"form-horizontal", "role"=>"form"))?>
+        <?=form_open('lists/update', array("id" => "createform", "class"=>"form-horizontal", "role"=>"form"))?>
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -87,7 +87,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Listenname</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="listname" id="listname" placeholder="08.02.2015" value="">
+                        <input type="text" class="form-control" name="listname" id="listname" value="">
                         <input type="hidden" class="form-control" name="list_id" id="list_id" value="">
                     </div>
                 </div>
@@ -103,9 +103,9 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+<div class="modal fade" id="ModalAlert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
     <div class="modal-dialog">
-        <?=form_open('lists/update', array("id" => "createform", "class"=>"form-horizontal", "role"=>"form"))?>
+        <?=form_open('alert/create', array("id" => "createform", "class"=>"form-horizontal", "role"=>"form"))?>
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -126,6 +126,7 @@
                         <input type="text" class="form-control" name="zeit" id="zeit" placeholder="00:00">
                     </div>
                 </div>
+                <input type="hidden" name="list_id" class="list_id_alert" placeholder="00:00">
 
             </div>
             <div class="modal-footer">
@@ -145,6 +146,13 @@
            // console.log(id, listname);
             $('#listname').val(listname);
             $('#list_id').val(id);
+        });
+        $('a.addAlert').on('click', function() {
+           var id = $(this).data('id');
+
+           // console.log(id, listname);
+            $('#listname').val(listname);
+            $('.list_id_alert').val(id);
         });
     });
 </script>
