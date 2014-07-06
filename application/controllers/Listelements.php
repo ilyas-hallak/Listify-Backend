@@ -25,7 +25,6 @@ class Listelements extends MY_BaseController
     }
 
     function create() {
-
         $user_id = $this->getCurrentUserId();
         $list_id = $this->input->post('list_id');
         $text = $this->input->post('text');
