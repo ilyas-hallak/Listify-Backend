@@ -30,10 +30,9 @@
                     <tr>
                         <td><?=$item->name?></td>
                         <td>
-                            <a href="<?=site_url('listelements/index/' . $item->id) ?>" data-toggle="tooltip" data-placement="right" title="Detail Ansicht"><span
-                                    class="glyphicon glyphicon-eye-open"></span></a>
-                            <a href="#" data-toggle="modal" data-target="#ModalAlert" title="Alert legen"><span
-                                    class="glyphicon glyphicon-time"></span></a>
+                            <a href="<?=site_url('listelements/index/' . $item->id) ?>" data-toggle="tooltip" data-placement="right" title="Detail Ansicht"><span class="glyphicon glyphicon-eye-open"></span></a>
+                            <a href="#" data-toggle="modal" data-target="#ModalUpdate" title="Alert legen"><span class="glyphicon glyphicon-time"></span></a>
+                            <a href="#" class="editLink" data-toggle="modal" data-target="#myModal" data-id="<?=$item->id?>" data-listname="<?=$item->name?>" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
                             <?php if($item->id == null): ?>
                                 <!--a href="<?=site_url('lists/leave/' . $item->id)?>" data-toggle="tooltip" data-placement="right"  title="Löschen"><span class="glyphicon glyphicon-trash"></span></a-->
                             <?php endif; ?>
@@ -81,6 +80,35 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Liste bearbeiten</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Listenname</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="listname" id="listname" placeholder="08.02.2015" value="">
+                        <input type="hidden" class="form-control" name="list_id" id="list_id" value="">
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Speichern</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+        <?=form_open('lists/update', array("id" => "createform", "class"=>"form-horizontal", "role"=>"form"))?>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Erinnerung anlegen</h4>
             </div>
             <div class="modal-body">
@@ -109,4 +137,14 @@
     </div>
 </div>
 
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('a.editLink').on('click', function() {
+           var id = $(this).data('id');
+           var listname = $(this).data('listname');
+           // console.log(id, listname);
+            $('#listname').val(listname);
+            $('#list_id').val(id);
+        });
+    });
+</script>
