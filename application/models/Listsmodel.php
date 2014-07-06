@@ -63,4 +63,20 @@ class Listsmodel extends CI_Model
         $this->db->delete('List', array('id' => $list_id));
     }
 
+    function getColorsByListId($list_id) {
+        /*
+            select Color.* from `List_has_Listelement`
+            INNER JOIN `Color` ON Color.id = `List_has_Listelement`.`Color_id`
+            WHERE List_has_Listelement.`List_id` = 1
+            Group By value;
+        */
+        $this->db->select('Color.*');
+        $this->db->from('List_has_Listelement');
+        $this->db->join('Color', 'Color.id = List_has_Listelement.Color_id', 'inner');
+        $this->db->where('List_has_Listelement.List_id', $list_id);
+        $this->db->group_by("value");
+
+
+    }
+
 }

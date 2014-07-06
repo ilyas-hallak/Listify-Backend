@@ -20,7 +20,7 @@ class Lists extends MY_BaseController
         $user_id = $this->session->userdata('logged_in')["id"];
 
         $data2['contentData'] = $this->Listsmodel->getAllListsByUserId($user_id);
-
+        // $data2['colors'] = $this->Listsmodel->getColorsByListId();
         $data['title'] = 'Meine Listen';
         $data['content'] = $this->load->view('lists/index', $data2, TRUE);
         $this->load->view('template', $data);
